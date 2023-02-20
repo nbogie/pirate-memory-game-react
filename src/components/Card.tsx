@@ -4,6 +4,7 @@ export interface Card {
     backing: Backing;
     creature: Creature;
     isFaceUp: boolean;
+    id: number;
 }
 
 
@@ -13,10 +14,12 @@ export const allCreatures = ["🐧", "🐢", "🐙", "🐋", "🦀"] as const;
 export type Creature = typeof allCreatures[number];
 
 export function createDeck() {
-    const cards: Card[] = [];
+    type IDlessCard = Omit<Card, "id">;
+
+    const cards: IDlessCard[] = [];
     for (const backing of allBackings) {
         for (const creature of allCreatures) {
-            const c: Card = {
+            const c: IDlessCard = {
                 backing,
                 creature,
                 isFaceUp: pick([true, false])
@@ -26,8 +29,10 @@ export function createDeck() {
     }
     const shuffled = shuffle(cards);
     shuffled.pop();
-    return shuffled;
+    const cardsWithIDs: Card[] = shuffled.map((c, ix) => ({ ...c, id: ix + 1 }))
+    return cardsWithIDs;
 }
+
 export function shuffle<T>(arr: T[]): T[] {
     return [...arr.sort(() => Math.random() < 0.5 ? -1 : 1)];
 }
