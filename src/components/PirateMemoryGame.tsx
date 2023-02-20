@@ -24,12 +24,13 @@ export function PirateMemoryGame() {
         (
             <div className={`centreCard treasure`}>
                 <div>💰</div>
+                <div className="centerCardOverlay">{gameState.treasureCardPile.length}</div>
             </div>
         ) :
         (
             <div className={`centreCard volcano`}>
                 <div>🌋</div>
-                <div className="volcanoOverlay">{countNumFailsBeforeWin(gameState)}</div>
+                <div className="centerCardOverlay">{countNumFailsBeforeWin(gameState)}</div>
             </div>
         );
 
