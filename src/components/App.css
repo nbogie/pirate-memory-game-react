@@ -16,6 +16,9 @@ body {
     "u v w x y";
   gap: 0.5rem;
   margin: 1rem;
+  background: whitesmoke;
+  padding: 1rem;
+  border-radius: 1rem;
 }
 
 
@@ -58,4 +61,10 @@ body {
 
 .jungle {
   background-color: rgb(28, 170, 28);
+}
+
+.card.faceDown {
+  /* https://www.magicpattern.design/tools/css-backgrounds */
+
+  background: repeating-linear-gradient(-45deg, #acafcf, #a6a8d1 4px, #c6c6db 4px, #e5e5f7 14px);
 }
