@@ -4,16 +4,19 @@ body {
   font-weight: 400;
   max-width: 1280px;
   margin: 0 auto;
+  padding: 0;
+
 }
+
 
 .cardGrid {
   display: grid;
   grid-template-areas:
-    "a b c d e"
-    "f g h i j"
-    "k l m n o"
-    "p q r s t"
-    "u v w x y";
+    ". . . . ."
+    ". . . . ."
+    ". . c . ."
+    ". . . . ."
+    ". . . . .";
   gap: 0.5rem;
   margin: 1rem;
   background: whitesmoke;
@@ -36,7 +39,7 @@ body {
 }
 
 .centreCard {
-  grid-area: m;
+  grid-area: c;
 }
 
 .card:hover {
@@ -82,7 +85,7 @@ body {
 }
 
 
-.overlay {
+.volcanoOverlay {
   position: absolute;
   top: 0.25rem;
   right: 0.5rem;
@@ -92,38 +95,61 @@ body {
   font-size: 2rem;
 }
 
-.playersCircle {
-  background: green;
-  position: absolute;
-  top: 50%;
-  left: 20%;
-  --circleSize: 5rem;
 
+.playersCircle {
+  /* background: green; */
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  --circleSize: 3rem;
+  border: calc(var(--circleSize) * 0.1) solid gray;
+  width: calc(var(--circleSize) * 2);
+  height: calc(var(--circleSize) * 2);
+  /* This will be set by react */
+  --numPlayers: 3;
+  --rotStep: calc(360deg / var(--numPlayers));
+  user-select: none;
 }
 
 .playersCircle .player {
   position: absolute;
   color: white;
-  width: 3rem;
+  width: fit-content;
+  padding: 0rem 0.8rem;
+  font-size: calc(var(--circleSize) * 0.25);
   display: grid;
   place-items: center;
   border-radius: 0.3rem;
-  padding: 0.2rem;
-  background: salmon;
+  background: skyblue;
+  display: grid;
+  place-items: center;
 }
 
 .player.eliminated {
-  text-decoration: line-through;
+  background-color: gray;
 }
 
+.player.currentPlayer {
+  outline: 3px dashed gold;
+  scale: 1;
+}
+
+/* 1st player */
 .rot0 {
   transform: rotate(0deg) translate(0rem, var(--circleSize));
 }
 
+/* 2nd player */
 .rot1 {
-  transform: rotate(120deg) translate(0rem, var(--circleSize));
+  transform: rotate(calc(var(--rotStep) * 1)) translate(0rem, var(--circleSize));
 }
 
+/* possible 3rd player */
 .rot2 {
-  transform: rotate(240deg) translate(0rem, var(--circleSize));
+  transform: rotate(calc(var(--rotStep) * 2)) translate(0rem, var(--circleSize));
+}
+
+/* possible 4th and final player */
+.rot3 {
+  transform: rotate(calc(var(--rotStep) * 3)) translate(0rem, var(--circleSize));
 }

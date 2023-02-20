@@ -1,4 +1,6 @@
 import { Card, createDeck, shuffle } from "../components/Card";
+import { pick } from "../utils/pick";
+import { sample } from "../utils/sample";
 
 export type RoundPhase =
     | { type: "pre-look" }
@@ -24,11 +26,16 @@ export function createInitialGameState(): GameState {
     cardsToPreview.forEach(c => c.isFaceUp = true)
     const gameState: GameState = {
         cards: shuffle(deck),
-        players: createPlayers(["Larry", "Curly", "Mo"]),
+        players: createRandomPlayers(),
         currentPlayerIx: 0,
         roundPhase: { type: "pre-look" }
     };
     return gameState;
+}
+
+function createRandomPlayers() {
+    const numPlayers = pick([2, 3, 4]);
+    return createPlayers(sample(["Larry", "Curly", "Mo", "Ted"], numPlayers))
 }
 
 function createPlayers(names: string[]): PlayerState[] {

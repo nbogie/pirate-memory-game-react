@@ -27,7 +27,7 @@ export function PirateMemoryGame() {
         (
             <div className={`centreCard volcano`}>
                 <div>🌋</div>
-                <div className="overlay">{numFailsBeforeWin}</div>
+                <div className="volcanoOverlay">{numFailsBeforeWin}</div>
             </div>
         );
 
@@ -46,7 +46,9 @@ export function PirateMemoryGame() {
             {centreCard}
         </div>
         <PlayersAtTable gameState={gameState} />
+
         <div>{gameState.roundPhase.type}</div>
+
         {gameState.roundPhase.type === "round-end" && (<>
             <p>Winner: {getPlayerByPosIndex(gameState, gameState.roundPhase.winnerIx).name}</p>
             <button onClick={() => dispatch({ type: "start-first-round" })}>start next round</button>

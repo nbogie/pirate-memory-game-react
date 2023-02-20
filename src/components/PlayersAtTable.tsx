@@ -6,15 +6,16 @@ interface PlayersAtTableProps {
 export function PlayersAtTable({ gameState }: PlayersAtTableProps) {
     const currentPlayer = gameState.players[gameState.currentPlayerIx];
 
+    const style = { "--numPlayers": gameState.players.length } as React.CSSProperties;
+
     return (
-        <div>
-            Whose turn? {currentPlayer.name}
-            <br />
-            <div className="playersCircle">
-                {gameState.players.map((p, ix) => {
+        <div className="playersCircle" style={style}>
+            {
+                gameState.players.map((p, ix) => {
 
                     const classNames = ["player",
                         p.isStillIn ? "" : "eliminated",
+                        p.name === currentPlayer.name ? "currentPlayer" : "",
                         "rot" + ix]
 
                     return (
@@ -25,11 +26,8 @@ export function PlayersAtTable({ gameState }: PlayersAtTableProps) {
                             {p.name}
                         </div>
                     )
-                }
-
-                )}
-            </div>
-        </div >
-
+                })
+            }
+        </div>
     );
 }
