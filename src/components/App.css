@@ -28,6 +28,7 @@ body {
   display: grid;
   place-items: center;
   border-radius: 15%;
+  min-width: 6rem;
   aspect-ratio: 1;
   box-shadow: 2px 2px 3px 1px rgba(0, 0, 0, 0.2);
   user-select: none;
@@ -67,4 +68,14 @@ body {
   /* https://www.magicpattern.design/tools/css-backgrounds */
 
   background: repeating-linear-gradient(-45deg, #acafcf, #a6a8d1 4px, #c6c6db 4px, #e5e5f7 14px);
+}
+
+.player {
+  padding: 0.2rem;
+  background: salmon;
+
+}
+
+.player.eliminated {
+  text-decoration: line-through;
 }
