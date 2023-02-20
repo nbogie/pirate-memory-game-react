@@ -6,6 +6,7 @@ body {
   display: grid;
   place-items: center;
   height: 100vh;
+  line-height: 1.3;
 }
 
 @media screen and (max-width: 640px) {
@@ -160,4 +161,8 @@ body {
 /* possible 4th and final player */
 .rot3 {
   transform: rotate(calc(var(--rotStep) * 3)) translate(0rem, var(--circleSize));
+}
+
+.gameOver {
+  font-size: 1.5rem;
 }

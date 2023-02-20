@@ -1,6 +1,7 @@
 import { Card } from "../components/Card";
 
-export type Action = FlipCardAction | StartFirstRoundAction;
+export type Action = FlipCardAction | StartNewGameAction | AwardTreasureAction;
 
 export type FlipCardAction = { type: "flip"; clickedCard: Card };
-export type StartFirstRoundAction = { type: "start-first-round" };
+export type AwardTreasureAction = { type: "award-treasure", winnerIx: number };
+export type StartNewGameAction = { type: "start-new-game" };

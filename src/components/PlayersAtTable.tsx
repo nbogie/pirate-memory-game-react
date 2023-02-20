@@ -23,7 +23,7 @@ export function PlayersAtTable({ gameState }: PlayersAtTableProps) {
                             key={p.name}
                             className={classNames.join(" ")}
                         >
-                            {p.name}
+                            {p.name} ({p.treasures.length})
                         </div>
                     )
                 })

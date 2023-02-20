@@ -1,9 +1,11 @@
 import { useReducer } from "react";
-import { countNumFailsBeforeWin, createInitialGameState, getPlayerByPosIndex } from "../gameCore/gameState";
+import { countNumFailsBeforeWin, createInitialGameState } from "../gameCore/gameState";
 import { reducerFunction } from "../gameCore/reducerFunction";
 import { Card } from "./Card";
 import { CardView } from "./CardView";
+import { GameOverView } from "./GameOverView";
 import { PlayersAtTable } from "./PlayersAtTable";
+import { RoundEndControls } from "./RoundEndControls";
 
 export function PirateMemoryGame() {
     const initialGameState = createInitialGameState();
@@ -48,10 +50,18 @@ export function PirateMemoryGame() {
         <PlayersAtTable gameState={gameState} />
 
         <div>{gameState.roundPhase.type}</div>
+        <div>{gameState.treasureCardPile.length} treasure(s) remain</div>
 
-        {gameState.roundPhase.type === "round-end" && (<>
-            <p>Winner: {getPlayerByPosIndex(gameState, gameState.roundPhase.winnerIx).name}</p>
-            <button onClick={() => dispatch({ type: "start-first-round" })}>start next round</button>
-        </>)}
+        {
+            gameState.roundPhase.type === "round-end" &&
+            <RoundEndControls gameState={gameState} dispatch={dispatch} winnerIx={gameState.roundPhase.winnerIx} />
+        }
+
+        {
+            gameState.roundPhase.type === "game-over" &&
+            <GameOverView gameState={gameState} dispatch={dispatch} />
+        }
     </div>
 }
+
+

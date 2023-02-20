@@ -22,7 +22,7 @@ export function createDeck() {
             const c: Card = {
                 backing,
                 creature,
-                isFaceUp: pick([true, false]),
+                isFaceUp: false,
                 id: id++
             };
             cards.push(c);

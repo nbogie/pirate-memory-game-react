@@ -10,6 +10,7 @@ export type RoundPhase =
         prevPrevCard: Card | null
     }
     | { type: "round-end", winnerIx: number }
+    | { type: "game-over" }
 
 export interface GameState {
     cards: Card[];
@@ -17,9 +18,12 @@ export interface GameState {
     playerToStartNextRound: PlayerState | null;
     currentPlayerIx: number;
     roundPhase: RoundPhase;
+    treasureCardPile: TreasureCard[];
 }
 
-export type PlayerState = { name: string, isStillIn: boolean }
+export type TreasureCard = { value: number };
+
+export type PlayerState = { name: string, isStillIn: boolean, treasures: TreasureCard[] }
 
 export function createInitialGameState(): GameState {
     const deck = createDeck();
@@ -32,7 +36,8 @@ export function createInitialGameState(): GameState {
         players,
         currentPlayerIx: 0,
         playerToStartNextRound: null,
-        roundPhase: { type: "pre-look" }
+        roundPhase: { type: "pre-look" },
+        treasureCardPile: createTreasureCardPile()
     };
     return gameState;
 }
@@ -43,7 +48,7 @@ function createRandomPlayers() {
 }
 
 function createPlayers(names: string[]): PlayerState[] {
-    return names.map(name => ({ name, isStillIn: true }))
+    return names.map(name => ({ name, isStillIn: true, treasures: [] }))
 }
 
 export function getPlayerByPosIndex(gameState: GameState, ix: number): PlayerState {
@@ -52,5 +57,9 @@ export function getPlayerByPosIndex(gameState: GameState, ix: number): PlayerSta
 }
 export function countNumFailsBeforeWin(gameState: GameState): number {
     return gameState.players.filter(p => p.isStillIn).length - 1;
+}
 
+function createTreasureCardPile(): TreasureCard[] {
+    const treasureValues = [1, 1, 2, 2, 2, 3, 4];
+    return shuffle(treasureValues).map(v => ({ value: v }))
 }
