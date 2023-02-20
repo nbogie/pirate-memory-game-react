@@ -109,7 +109,7 @@ body {
   display: grid;
   place-items: center;
   border-radius: 50%;
-  --circleSize: 4rem;
+  --circleSize: 5rem;
   border: calc(var(--circleSize) * 0.1) solid gray;
   width: calc(var(--circleSize) * 2);
   height: calc(var(--circleSize) * 2);
@@ -125,7 +125,7 @@ body {
   color: white;
   width: fit-content;
   padding: 0rem 0.8rem;
-  font-size: calc(var(--circleSize) * 0.25);
+  font-size: calc(var(--circleSize) * 0.35);
   display: grid;
   place-items: center;
   border-radius: 0.3rem;
