@@ -1,10 +1,11 @@
-import { Card, createDeck } from "../components/Card";
+import { Card, createDeck, shuffle } from "../components/Card";
 
 export type RoundPhase = { type: "pre-look" } | { type: "in-play" } | { type: "round-end", winnerIx: number }
 
 export interface GameState {
     cards: Card[];
     prevCard: Card | null;
+    prevPrevCard: Card | null;
     players: PlayerState[];
     currentPlayerIx: number;
     roundPhase: RoundPhase;
@@ -13,12 +14,16 @@ export interface GameState {
 export type PlayerState = { name: string, isStillIn: boolean }
 
 export function createInitialGameState(): GameState {
+    const deck = createDeck();
+    const cardsToPreview = shuffle(deck).slice(0, 3);
+    cardsToPreview.forEach(c => c.isFaceUp = true)
     const gameState: GameState = {
-        cards: createDeck(),
+        cards: shuffle(deck),
         players: createPlayers(["Larry", "Curly", "Mo"]),
         prevCard: null,
+        prevPrevCard: null,
         currentPlayerIx: 0,
-        roundPhase: { type: "in-play" }
+        roundPhase: { type: "pre-look" }
     };
     return gameState;
 }
@@ -28,7 +33,6 @@ function createPlayers(names: string[]): PlayerState[] {
 }
 
 export function getPlayerByPosIndex(gameState: GameState, ix: number): PlayerState {
-    console.log("getPlayerByPosIndex", ix);
     return gameState.players[ix];
 
 }

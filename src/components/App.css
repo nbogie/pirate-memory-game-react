@@ -43,6 +43,13 @@ body {
   cursor: pointer;
 }
 
+.card.latest {
+  border-style: dashed;
+}
+
+.card.previous {
+  border-style: dashed;
+}
 
 .lava {
   background-color: tomato;
