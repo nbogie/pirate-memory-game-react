@@ -8,13 +8,19 @@ body {
 
 .cardGrid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(5, 1fr);
+  grid-template-areas:
+    "a b c d e"
+    "f g h i j"
+    "k l m n o"
+    "p q r s t"
+    "u v w x y";
   gap: 0.5rem;
   margin: 1rem;
 }
 
-.card {
+
+.card,
+.centreCard {
   font-size: 4rem;
   display: grid;
   place-items: center;
@@ -23,6 +29,10 @@ body {
   box-shadow: 2px 2px 3px 1px rgba(0, 0, 0, 0.2);
   user-select: none;
   border: 0.4rem solid white;
+}
+
+.centreCard {
+  grid-area: m;
 }
 
 .card:hover {
