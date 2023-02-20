@@ -1,13 +1,13 @@
 import { useReducer } from "react";
-import { countNumFailsBeforeWin, createInitialGameState, GameState, getPlayerByPosIndex } from "../gameCore/gameState";
+import { countNumFailsBeforeWin, createInitialGameState, getPlayerByPosIndex } from "../gameCore/gameState";
 import { reducerFunction } from "../gameCore/reducerFunction";
 import { Card } from "./Card";
 import { CardView } from "./CardView";
+import { PlayersAtTable } from "./PlayersAtTable";
 
 export function PirateMemoryGame() {
     const initialGameState = createInitialGameState();
     const [gameState, dispatch] = useReducer(reducerFunction, initialGameState);
-    const currentPlayer = gameState.players[gameState.currentPlayerIx];
     const numFailsBeforeWin = countNumFailsBeforeWin(gameState);
     function isCardLatestFlip(card: Card): boolean {
         const roundPhase = gameState.roundPhase;
@@ -42,21 +42,10 @@ export function PirateMemoryGame() {
                     isLatestFlip={isCardLatestFlip(c)}
                     isPreviousFlip={isCardPreviousFlip(c)}
                 />)
-
             }
             {centreCard}
         </div>
-        <div>
-            Whose turn? {currentPlayer.name}
-            <br />
-            {gameState.players.map(p => <span
-                key={p.name}
-                className={`player ${p.isStillIn ? "" : "eliminated"}`}
-            >
-                {p.name}
-            </span>
-            )}
-        </div>
+        <PlayersAtTable gameState={gameState} />
         <div>{gameState.roundPhase.type}</div>
         {gameState.roundPhase.type === "round-end" && (<>
             <p>Winner: {getPlayerByPosIndex(gameState, gameState.roundPhase.winnerIx).name}</p>
@@ -64,5 +53,3 @@ export function PirateMemoryGame() {
         </>)}
     </div>
 }
-
-
