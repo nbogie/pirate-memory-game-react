@@ -5,18 +5,31 @@ interface PlayersAtTableProps {
 }
 export function PlayersAtTable({ gameState }: PlayersAtTableProps) {
     const currentPlayer = gameState.players[gameState.currentPlayerIx];
+
     return (
         <div>
             Whose turn? {currentPlayer.name}
             <br />
-            {gameState.players.map(p => <span
-                key={p.name}
-                className={`player ${p.isStillIn ? "" : "eliminated"}`}
-            >
-                {p.name}
-            </span>
-            )}
-        </div>
+            <div className="playersCircle">
+                {gameState.players.map((p, ix) => {
+
+                    const classNames = ["player",
+                        p.isStillIn ? "" : "eliminated",
+                        "rot" + ix]
+
+                    return (
+                        <div
+                            key={p.name}
+                            className={classNames.join(" ")}
+                        >
+                            {p.name}
+                        </div>
+                    )
+                }
+
+                )}
+            </div>
+        </div >
 
     );
 }

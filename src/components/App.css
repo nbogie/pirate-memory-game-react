@@ -77,16 +77,6 @@ body {
   background: repeating-linear-gradient(-45deg, #acafcf, #a6a8d1 4px, #c6c6db 4px, #e5e5f7 14px);
 }
 
-.player {
-  padding: 0.2rem;
-  background: salmon;
-
-}
-
-.player.eliminated {
-  text-decoration: line-through;
-}
-
 .centreCard {
   position: relative
 }
@@ -100,4 +90,40 @@ body {
   display: grid;
   place-items: center;
   font-size: 2rem;
+}
+
+.playersCircle {
+  background: green;
+  position: absolute;
+  top: 50%;
+  left: 20%;
+  --circleSize: 5rem;
+
+}
+
+.playersCircle .player {
+  position: absolute;
+  color: white;
+  width: 3rem;
+  display: grid;
+  place-items: center;
+  border-radius: 0.3rem;
+  padding: 0.2rem;
+  background: salmon;
+}
+
+.player.eliminated {
+  text-decoration: line-through;
+}
+
+.rot0 {
+  transform: rotate(0deg) translate(0rem, var(--circleSize));
+}
+
+.rot1 {
+  transform: rotate(120deg) translate(0rem, var(--circleSize));
+}
+
+.rot2 {
+  transform: rotate(240deg) translate(0rem, var(--circleSize));
 }
