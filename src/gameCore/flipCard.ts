@@ -3,13 +3,19 @@ import { FlipCardAction } from "./action";
 import { GameState, PlayerState } from "./gameState";
 
 export function flipCard(gs: GameState, action: FlipCardAction): GameState {
+    if (gs.roundPhase.type !== "in-play") {
+        return gs;
+    }
+
     const newCards = [...gs.cards];
     const foundIndex = newCards.findIndex(c => c.id === action.clickedCard.id);
     newCards[foundIndex] = { ...newCards[foundIndex], isFaceUp: true };
 
-    const playerStaysIn = (gs.prevCard === null || isMatch(gs.prevCard, action.clickedCard));
+    const playerStaysIn = (gs.roundPhase.prevCard === null || isMatch(gs.roundPhase.prevCard, action.clickedCard));
+
     const newPlayers = !playerStaysIn ?
         eliminatePlayer(gs.players, gs.currentPlayerIx) : gs.players;
+
     const isRoundOver = newPlayers.filter(p => p.isStillIn).length <= 1;
 
     const newCurrentPlayerIx = [...newPlayers, ...newPlayers].findIndex((p, ix) => ix > gs.currentPlayerIx && p.isStillIn) % newPlayers.length;
@@ -19,9 +25,13 @@ export function flipCard(gs: GameState, action: FlipCardAction): GameState {
         currentPlayerIx: newCurrentPlayerIx,
         players: newPlayers,
         cards: newCards,
-        prevCard: action.clickedCard,
-        prevPrevCard: gs.prevCard,
-        roundPhase: isRoundOver ? { type: "round-end", winnerIx: newCurrentPlayerIx } : gs.roundPhase
+        roundPhase: isRoundOver ? {
+            type: "round-end", winnerIx: newCurrentPlayerIx
+        } : {
+            type: "in-play",
+            prevCard: action.clickedCard,
+            prevPrevCard: gs.roundPhase.prevCard,
+        }
     };
 }
 function isMatch(a: Card, b: Card): boolean {

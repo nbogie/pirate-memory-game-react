@@ -24,9 +24,7 @@ function setupNextRound(gs: GameState): GameState {
         ...gs,
         cards: gs.cards.map(c => ({ ...c, isFaceUp: false })),
         players: gs.players.map(p => ({ ...p, isStillIn: true })),
-        prevCard: null,
-        prevPrevCard: null,
-        roundPhase: { type: "in-play" }//TODO: rounds left?,
+        roundPhase: { type: "in-play", prevCard: null, prevPrevCard: null },
 
     };
 }

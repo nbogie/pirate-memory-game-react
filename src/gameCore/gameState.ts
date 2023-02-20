@@ -1,11 +1,16 @@
 import { Card, createDeck, shuffle } from "../components/Card";
 
-export type RoundPhase = { type: "pre-look" } | { type: "in-play" } | { type: "round-end", winnerIx: number }
+export type RoundPhase =
+    | { type: "pre-look" }
+    | {
+        type: "in-play",
+        prevCard: Card | null,
+        prevPrevCard: Card | null
+    }
+    | { type: "round-end", winnerIx: number }
 
 export interface GameState {
     cards: Card[];
-    prevCard: Card | null;
-    prevPrevCard: Card | null;
     players: PlayerState[];
     currentPlayerIx: number;
     roundPhase: RoundPhase;
@@ -20,8 +25,6 @@ export function createInitialGameState(): GameState {
     const gameState: GameState = {
         cards: shuffle(deck),
         players: createPlayers(["Larry", "Curly", "Mo"]),
-        prevCard: null,
-        prevPrevCard: null,
         currentPlayerIx: 0,
         roundPhase: { type: "pre-look" }
     };

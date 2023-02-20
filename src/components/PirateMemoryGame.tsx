@@ -1,6 +1,7 @@
 import { useReducer } from "react";
-import { countNumFailsBeforeWin, createInitialGameState, getPlayerByPosIndex } from "../gameCore/gameState";
+import { countNumFailsBeforeWin, createInitialGameState, GameState, getPlayerByPosIndex } from "../gameCore/gameState";
 import { reducerFunction } from "../gameCore/reducerFunction";
+import { Card } from "./Card";
 import { CardView } from "./CardView";
 
 export function PirateMemoryGame() {
@@ -8,6 +9,15 @@ export function PirateMemoryGame() {
     const [gameState, dispatch] = useReducer(reducerFunction, initialGameState);
     const currentPlayer = gameState.players[gameState.currentPlayerIx];
     const numFailsBeforeWin = countNumFailsBeforeWin(gameState);
+    function isCardLatestFlip(card: Card): boolean {
+        const roundPhase = gameState.roundPhase;
+        return roundPhase.type === "in-play" && roundPhase.prevCard?.id === card.id
+    }
+    function isCardPreviousFlip(card: Card): boolean {
+        const roundPhase = gameState.roundPhase;
+        return roundPhase.type === "in-play" && roundPhase.prevPrevCard?.id === card.id
+    }
+
     const centreCard = gameState.roundPhase.type === "round-end" ?
         (
             <div className={`centreCard treasure`}>
@@ -29,8 +39,8 @@ export function PirateMemoryGame() {
                     card={c}
                     dispatch={dispatch}
                     key={c.id}
-                    isLatestFlip={gameState.prevCard?.id === c.id}
-                    isPreviousFlip={gameState.prevPrevCard?.id === c.id}
+                    isLatestFlip={isCardLatestFlip(c)}
+                    isPreviousFlip={isCardPreviousFlip(c)}
                 />)
 
             }
