@@ -36,3 +36,7 @@ export function getPlayerByPosIndex(gameState: GameState, ix: number): PlayerSta
     return gameState.players[ix];
 
 }
+export function countNumFailsBeforeWin(gameState: GameState): number {
+    return gameState.players.filter(p => p.isStillIn).length - 1;
+
+}

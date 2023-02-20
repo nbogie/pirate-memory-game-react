@@ -8,6 +8,7 @@ export interface Card {
 export const allBackings = ["lava", "water", "desert", "flowers", "jungle"] as const;
 export type Backing = typeof allBackings[number];
 export const allCreatures = ["🐧", "🐢", "🐙", "🐋", "🦀"] as const;
+export const moneyBag = "💰";
 export type Creature = typeof allCreatures[number];
 
 export function createDeck() {

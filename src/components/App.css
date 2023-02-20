@@ -86,3 +86,18 @@ body {
 .player.eliminated {
   text-decoration: line-through;
 }
+
+.centreCard {
+  position: relative
+}
+
+
+.overlay {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.5rem;
+  color: gray;
+  display: grid;
+  place-items: center;
+  font-size: 2rem;
+}

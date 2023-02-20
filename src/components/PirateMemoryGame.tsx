@@ -1,5 +1,5 @@
 import { useReducer } from "react";
-import { createInitialGameState, getPlayerByPosIndex } from "../gameCore/gameState";
+import { countNumFailsBeforeWin, createInitialGameState, getPlayerByPosIndex } from "../gameCore/gameState";
 import { reducerFunction } from "../gameCore/reducerFunction";
 import { CardView } from "./CardView";
 
@@ -7,6 +7,21 @@ export function PirateMemoryGame() {
     const initialGameState = createInitialGameState();
     const [gameState, dispatch] = useReducer(reducerFunction, initialGameState);
     const currentPlayer = gameState.players[gameState.currentPlayerIx];
+    const numFailsBeforeWin = countNumFailsBeforeWin(gameState);
+    const centreCard = gameState.roundPhase.type === "round-end" ?
+        (
+            <div className={`centreCard treasure`}>
+                <div>💰</div>
+            </div>
+        ) :
+        (
+            <div className={`centreCard volcano`}>
+                <div>🌋</div>
+                <div className="overlay">{numFailsBeforeWin}</div>
+            </div>
+        );
+
+
     return <div className="game">
         <div className="cardGrid">
             {
@@ -17,8 +32,9 @@ export function PirateMemoryGame() {
                     isLatestFlip={gameState.prevCard?.id === c.id}
                     isPreviousFlip={gameState.prevPrevCard?.id === c.id}
                 />)
+
             }
-            <div className={`centreCard volcano`}>🌋</div>
+            {centreCard}
         </div>
         <div>
             Whose turn? {currentPlayer.name}
