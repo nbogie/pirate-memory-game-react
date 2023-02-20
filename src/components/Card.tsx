@@ -1,5 +1,3 @@
-import { pick } from "../utils/pick";
-
 export interface Card {
     backing: Backing;
     creature: Creature;
@@ -7,30 +5,29 @@ export interface Card {
     id: number;
 }
 
-
 export const allBackings = ["lava", "water", "desert", "flowers", "jungle"] as const;
 export type Backing = typeof allBackings[number];
 export const allCreatures = ["🐧", "🐢", "🐙", "🐋", "🦀"] as const;
 export type Creature = typeof allCreatures[number];
 
 export function createDeck() {
-    type IDlessCard = Omit<Card, "id">;
 
-    const cards: IDlessCard[] = [];
+    const cards: Card[] = [];
+    let id = 1;
     for (const backing of allBackings) {
         for (const creature of allCreatures) {
-            const c: IDlessCard = {
+            const c: Card = {
                 backing,
                 creature,
-                isFaceUp: pick([true, false])
+                isFaceUp: false,
+                id: id++
             };
             cards.push(c);
         }
     }
     const shuffled = shuffle(cards);
     shuffled.pop();
-    const cardsWithIDs: Card[] = shuffled.map((c, ix) => ({ ...c, id: ix + 1 }))
-    return cardsWithIDs;
+    return shuffled;
 }
 
 export function shuffle<T>(arr: T[]): T[] {
