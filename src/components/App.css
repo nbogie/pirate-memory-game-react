@@ -3,12 +3,15 @@ body {
   max-width: 1280px;
   margin: 0 auto;
   padding: 0;
+  display: grid;
+  place-items: center;
+  height: 100vh;
 }
 
 @media screen and (max-width: 640px) {
   html {
-    font-size: 8px;
-    background: red;
+    font-size: 10px;
+    background: beige;
   }
 }
 
@@ -25,6 +28,7 @@ body {
   background: whitesmoke;
   padding: 1rem;
   border-radius: 1rem;
+  width: fit-content;
 }
 
 
@@ -35,7 +39,6 @@ body {
   place-items: center;
   border-radius: 15%;
   min-width: 6rem;
-  /* width: 6rem; */
   aspect-ratio: 1;
   box-shadow: 2px 2px 3px 1px rgba(0, 0, 0, 0.2);
   user-select: none;
