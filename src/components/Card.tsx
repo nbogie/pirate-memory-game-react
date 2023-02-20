@@ -1,8 +1,7 @@
-import { Backing, Creature } from "./PirateMemoryGame";
-
 export interface Card {
     backing: Backing;
     creature: Creature;
+    isFaceUp: boolean;
 }
 
 
@@ -15,7 +14,7 @@ export function createDeck() {
     const cards: Card[] = [];
     for (const backing of allBackings) {
         for (const creature of allCreatures) {
-            const c: Card = { backing, creature };
+            const c: Card = { backing, creature, isFaceUp: false };
             cards.push(c);
         }
     }
