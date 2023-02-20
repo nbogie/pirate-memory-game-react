@@ -1,12 +1,16 @@
 body {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
   max-width: 1280px;
   margin: 0 auto;
   padding: 0;
 }
 
+@media screen and (max-width: 640px) {
+  html {
+    font-size: 8px;
+    background: red;
+  }
+}
 
 .cardGrid {
   display: grid;
@@ -31,6 +35,7 @@ body {
   place-items: center;
   border-radius: 15%;
   min-width: 6rem;
+  /* width: 6rem; */
   aspect-ratio: 1;
   box-shadow: 2px 2px 3px 1px rgba(0, 0, 0, 0.2);
   user-select: none;
@@ -100,7 +105,7 @@ body {
   display: grid;
   place-items: center;
   border-radius: 50%;
-  --circleSize: 3rem;
+  --circleSize: 4rem;
   border: calc(var(--circleSize) * 0.1) solid gray;
   width: calc(var(--circleSize) * 2);
   height: calc(var(--circleSize) * 2);
@@ -130,7 +135,7 @@ body {
 }
 
 .player.currentPlayer {
-  outline: 3px dashed gold;
+  outline: 0.2rem dashed gold;
   scale: 1;
 }
 

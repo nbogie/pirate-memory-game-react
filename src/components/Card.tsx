@@ -1,3 +1,5 @@
+import { pick } from "../utils/pick";
+
 export interface Card {
     backing: Backing;
     creature: Creature;
@@ -20,7 +22,7 @@ export function createDeck() {
             const c: Card = {
                 backing,
                 creature,
-                isFaceUp: false,
+                isFaceUp: pick([true, false]),
                 id: id++
             };
             cards.push(c);
