@@ -1,4 +1,3 @@
-import { createDeck } from "../components/Card";
 import {
     Action
 } from "./action";
@@ -20,12 +19,15 @@ export function reducerFunction(gs: GameState, action: Action): GameState {
 }
 
 function setupNextRound(gs: GameState): GameState {
+    const startingPlayer = gs.playerToStartNextRound;
+    const currentPlayerIx = startingPlayer ? gs.players.findIndex(ps => ps.name === startingPlayer.name) : 0;
     return {
         ...gs,
         cards: gs.cards.map(c => ({ ...c, isFaceUp: false })),
         players: gs.players.map(p => ({ ...p, isStillIn: true })),
+        currentPlayerIx,
+        playerToStartNextRound: null,
         roundPhase: { type: "in-play", prevCard: null, prevPrevCard: null },
-
     };
 }
 

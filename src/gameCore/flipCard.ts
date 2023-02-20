@@ -1,6 +1,6 @@
 import { Card } from "../components/Card";
 import { FlipCardAction } from "./action";
-import { GameState, PlayerState } from "./gameState";
+import { GameState, getPlayerByPosIndex, PlayerState } from "./gameState";
 
 export function flipCard(gs: GameState, action: FlipCardAction): GameState {
     if (gs.roundPhase.type !== "in-play") {
@@ -12,9 +12,10 @@ export function flipCard(gs: GameState, action: FlipCardAction): GameState {
     newCards[foundIndex] = { ...newCards[foundIndex], isFaceUp: true };
 
     const playerStaysIn = (gs.roundPhase.prevCard === null || isMatch(gs.roundPhase.prevCard, action.clickedCard));
-
     const newPlayers = !playerStaysIn ?
         eliminatePlayer(gs.players, gs.currentPlayerIx) : gs.players;
+    const lastPlayer: PlayerState = getPlayerByPosIndex(gs, gs.currentPlayerIx);
+
 
     const isRoundOver = newPlayers.filter(p => p.isStillIn).length <= 1;
 
@@ -25,6 +26,7 @@ export function flipCard(gs: GameState, action: FlipCardAction): GameState {
         currentPlayerIx: newCurrentPlayerIx,
         players: newPlayers,
         cards: newCards,
+        playerToStartNextRound: gs.playerToStartNextRound ?? (playerStaysIn ? null : lastPlayer),
         roundPhase: isRoundOver ? {
             type: "round-end", winnerIx: newCurrentPlayerIx
         } : {

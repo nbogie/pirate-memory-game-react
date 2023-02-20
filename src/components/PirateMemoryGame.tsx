@@ -8,7 +8,7 @@ import { PlayersAtTable } from "./PlayersAtTable";
 export function PirateMemoryGame() {
     const initialGameState = createInitialGameState();
     const [gameState, dispatch] = useReducer(reducerFunction, initialGameState);
-    const numFailsBeforeWin = countNumFailsBeforeWin(gameState);
+
     function isCardLatestFlip(card: Card): boolean {
         const roundPhase = gameState.roundPhase;
         return roundPhase.type === "in-play" && roundPhase.prevCard?.id === card.id
@@ -27,7 +27,7 @@ export function PirateMemoryGame() {
         (
             <div className={`centreCard volcano`}>
                 <div>🌋</div>
-                <div className="volcanoOverlay">{numFailsBeforeWin}</div>
+                <div className="volcanoOverlay">{countNumFailsBeforeWin(gameState)}</div>
             </div>
         );
 

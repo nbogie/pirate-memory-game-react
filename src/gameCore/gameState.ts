@@ -14,6 +14,7 @@ export type RoundPhase =
 export interface GameState {
     cards: Card[];
     players: PlayerState[];
+    playerToStartNextRound: PlayerState | null;
     currentPlayerIx: number;
     roundPhase: RoundPhase;
 }
@@ -22,12 +23,15 @@ export type PlayerState = { name: string, isStillIn: boolean }
 
 export function createInitialGameState(): GameState {
     const deck = createDeck();
+    const players = createRandomPlayers();
+
     const cardsToPreview = shuffle(deck).slice(0, 3);
     cardsToPreview.forEach(c => c.isFaceUp = true)
     const gameState: GameState = {
         cards: shuffle(deck),
-        players: createRandomPlayers(),
+        players,
         currentPlayerIx: 0,
+        playerToStartNextRound: null,
         roundPhase: { type: "pre-look" }
     };
     return gameState;
