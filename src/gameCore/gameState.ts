@@ -14,7 +14,7 @@ export type RoundPhase =
     | { type: "round-end", winnerIx: number }
     | { type: "game-over" }
 
-interface NoteSchedule {
+export interface ScheduledNote {
     note: "match" | "no-match",
     timeIssued: number
 }
@@ -26,7 +26,7 @@ export interface GameState {
     currentPlayerIx: number;
     roundPhase: RoundPhase;
     treasureCardPile: TreasureCard[];
-    notesToPlay: NoteSchedule[];
+    scheduledNotes: ScheduledNote[];
 }
 
 export type TreasureCard = { value: number };
@@ -46,7 +46,7 @@ export function createInitialGameState(numPlayers: NumPlayers): GameState {
         playerToStartNextRound: null,
         roundPhase: { type: "pre-look" },
         treasureCardPile: createTreasureCardPile(),
-        notesToPlay: []
+        scheduledNotes: []
     };
     return gameState;
 }

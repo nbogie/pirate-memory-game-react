@@ -25,7 +25,7 @@ export function flipCard(gs: GameState, action: FlipCardAction): GameState {
         currentPlayerIx: newCurrentPlayerIx,
         players: newPlayers,
         cards: newCards,
-        notesToPlay: [...gs.notesToPlay, { note: playerStaysIn ? "match" : "no-match", timeIssued: Math.round(performance.now()) }],
+        scheduledNotes: [...gs.scheduledNotes, { note: playerStaysIn ? "match" : "no-match", timeIssued: Math.round(performance.now()) }],
         playerToStartNextRound: gs.playerToStartNextRound ?? (playerStaysIn ? null : lastPlayer),
         roundPhase: isRoundOver ? {
             type: "round-end", winnerIx: newCurrentPlayerIx
