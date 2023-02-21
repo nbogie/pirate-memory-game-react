@@ -33,6 +33,12 @@ body {
 }
 
 
+.backgroundSVG {
+  z-index: -2;
+  position: absolute;
+  bottom: -20%;
+}
+
 .card,
 .centreCard {
   font-size: 4rem;
@@ -44,6 +50,7 @@ body {
   box-shadow: 2px 2px 3px 1px rgba(0, 0, 0, 0.2);
   user-select: none;
   border: 0.4rem solid white;
+  overflow: hidden;
 }
 
 .centreCard {
@@ -65,26 +72,6 @@ body {
 
 .card.previous {
   border-style: dashed;
-}
-
-.lava {
-  background-color: tomato;
-}
-
-.water {
-  background-color: skyblue;
-}
-
-.desert {
-  background-color: rgb(250, 235, 133)
-}
-
-.flowers {
-  background-color: hotpink;
-}
-
-.jungle {
-  background-color: rgb(28, 170, 28);
 }
 
 .card.faceDown {
