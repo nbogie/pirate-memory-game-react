@@ -3,7 +3,7 @@ import {
     Action
 } from "./action";
 import { flipCard } from "./flipCard";
-import { createInitialGameState, GameState, getPlayerByPosIndex, PlayerState } from "./gameState";
+import { createInitialGameState, GameState, getPlayerByPosIndex, NumPlayers, PlayerState } from "./gameState";
 
 export function reducerFunction(gs: GameState, action: Action): GameState {
     switch (action.type) {
@@ -54,7 +54,7 @@ function awardTreasure(gs: GameState, winnerIx: number): GameState {
 }
 
 function startNewGame(gs: GameState): GameState {
-    return createInitialGameState();
+    return createInitialGameState(gs.players.length as NumPlayers);
 }
 
 function setupNextRound(gs: GameState): GameState {
