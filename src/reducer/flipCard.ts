@@ -16,7 +16,6 @@ export function flipCard(gs: GameState, action: FlipCardAction): GameState {
         eliminatePlayer(gs.players, gs.currentPlayerIx) : gs.players;
     const lastPlayer: PlayerState = getPlayerByPosIndex(gs, gs.currentPlayerIx);
 
-
     const isRoundOver = newPlayers.filter(p => p.isStillIn).length <= 1;
 
     const newCurrentPlayerIx = [...newPlayers, ...newPlayers].findIndex((p, ix) => ix > gs.currentPlayerIx && p.isStillIn) % newPlayers.length;
@@ -26,6 +25,7 @@ export function flipCard(gs: GameState, action: FlipCardAction): GameState {
         currentPlayerIx: newCurrentPlayerIx,
         players: newPlayers,
         cards: newCards,
+        notesToPlay: [...gs.notesToPlay, { note: playerStaysIn ? "match" : "no-match", timeIssued: Math.round(performance.now()) }],
         playerToStartNextRound: gs.playerToStartNextRound ?? (playerStaysIn ? null : lastPlayer),
         roundPhase: isRoundOver ? {
             type: "round-end", winnerIx: newCurrentPlayerIx
