@@ -19,6 +19,8 @@ export function reducerFunction(gs: GameState, action: Action): GameState {
             return startNewGame(gs);
         case "award-treasure":
             return awardTreasure(gs, action.winnerIx);
+        case "cheat-set-game-over":
+            return setupGameOver(gs);
         default: throw new UnreachableCodeError(action, "unreachable");
     }
 }
