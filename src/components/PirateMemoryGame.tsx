@@ -1,5 +1,5 @@
 import { useReducer } from "react";
-import { countNumFailsBeforeWin, createInitialGameState } from "../gameCore/gameState";
+import { countNumFailsBeforeWin, createInitialGameState, NumPlayers } from "../gameCore/gameState";
 import { reducerFunction } from "../gameCore/reducerFunction";
 import { Card } from "./Card";
 import { CardView } from "./CardView";
@@ -7,8 +7,12 @@ import { GameOverView } from "./GameOverView";
 import { PlayersAtTable } from "./PlayersAtTable";
 import { TreasureCardView } from "./TreasureCardView";
 
-export function PirateMemoryGame() {
-    const initialGameState = createInitialGameState();
+interface PirateMemoryGameProps {
+    numPlayers: NumPlayers;
+}
+
+export function PirateMemoryGame(props: PirateMemoryGameProps) {
+    const initialGameState = createInitialGameState(props.numPlayers);
     const [gameState, dispatch] = useReducer(reducerFunction, initialGameState);
 
     function isCardLatestFlip(card: Card): boolean {

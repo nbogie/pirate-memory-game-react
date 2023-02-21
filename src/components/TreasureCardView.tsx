@@ -24,7 +24,7 @@ export function TreasureCardView(props: TreasureCardViewProps) {
     // })
 
     const swellSprings = useSpring({
-        from: { scale: 0.98 },
+        from: { scale: 0.97 },
         to: { scale: 1 },
         config: { damping: 0, frequency: 0.8 }
     })
