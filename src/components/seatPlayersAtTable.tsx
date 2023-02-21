@@ -1,4 +1,4 @@
-export function seatPlayersAtTable<T>(players: T[]): (T | null)[] {
+export function seatPlayersAtTable<T>(players: T[]): [T | null, T | null, T | null, T | null] {
     const [a, b, c, d] = players;
     switch (players.length) {
         case 2:
