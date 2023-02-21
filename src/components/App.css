@@ -45,6 +45,16 @@ body {
   opacity: 0.5;
 }
 
+.playerArea.eliminated {
+  background-color: gainsboro;
+  text-decoration: line-through;
+  transition: background-color 0.5s;
+}
+
+.playerArea.currentPlayer {
+  outline: 0.2rem dashed skyblue;
+}
+
 .playerArea.pN {
   grid-area: pN;
 }
@@ -64,14 +74,6 @@ body {
   grid-area: pW;
 }
 
-.playerArea.eliminated {
-  background-color: gainsboro;
-}
-
-.playerArea.currentPlayer {
-  outline: 0.2rem dashed skyblue;
-  scale: 1;
-}
 
 
 .cardGrid {

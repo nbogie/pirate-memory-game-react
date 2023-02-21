@@ -11,6 +11,7 @@ export function PlayersAtTableEdges({ gameState }: PlayersAtTableEdgesProps) {
 
     const playersAndEmptySeats: (PlayerState | null)[] = seatPlayersAtTable(gameState.players);
     return (
+        //No container as these are going into a grid along with some other siblings
         <>
             {
                 playersAndEmptySeats.map((p, ix) => p === null ? <PlaceholderAtTableEdge ix={ix} /> : <PlayerAtTableEdge player={p} currentPlayer={currentPlayer} ix={ix} />)
