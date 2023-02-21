@@ -13,6 +13,7 @@
     "@react-spring/web": "^9.6.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "use-sound": "^4.0.1",
     "vitest": "^0.28.5"
   },
   "devDependencies": {
