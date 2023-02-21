@@ -10,7 +10,7 @@ export function GameOverView({ gameState, dispatch }: GameOverViewProps) {
     return (
         <div className="gameOver">
             {scoringReport.players.map(p =>
-                <div className="playerScore">{p.name}: {p.total} ({p.treasures.map(t => t.value).join(", ")})</div>
+                <div className="playerScore" key={p.name}>{p.name}: {p.total} ({p.treasures.map(t => t.value).join(", ")})</div>
             )}
 
             <button onClick={() => dispatch({ type: "start-new-game" })}>Start game</button>
