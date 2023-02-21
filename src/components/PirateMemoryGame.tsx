@@ -4,9 +4,9 @@ import { reducerFunction } from "../gameCore/reducerFunction";
 import { Card } from "./Card";
 import { CardView } from "./CardView";
 import { GameOverView } from "./GameOverView";
-import { PlayersAtTableMini } from "./PlayersAtTableMini";
 import { PlayersAtTableEdges } from "./PlayersAtTableEdges";
 import { TreasureCardView } from "./TreasureCardView";
+// import { OLDPlayersAtTableMini } from "./OLDPlayersAtTableMini";
 
 interface PirateMemoryGameProps {
     numPlayers: NumPlayers;
@@ -59,6 +59,7 @@ export function PirateMemoryGame(props: PirateMemoryGameProps) {
             </div>
             <div>
                 <button onClick={() => dispatch({ type: "cheat-set-game-over" })}>Set Game Over</button>
+                {/* <OLDPlayersAtTableMini gameState={gameState} /> */}
                 <div>{gameState.roundPhase.type}</div>
 
                 {
