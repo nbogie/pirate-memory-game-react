@@ -58,7 +58,6 @@ export function PirateMemoryGame(props: PirateMemoryGameProps) {
                 </div>
             </div>
             <div>
-                <PlayersAtTableMini gameState={gameState} />
                 <button onClick={() => dispatch({ type: "cheat-set-game-over" })}>Set Game Over</button>
                 <div>{gameState.roundPhase.type}</div>
 
