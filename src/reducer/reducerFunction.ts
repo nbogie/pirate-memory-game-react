@@ -11,7 +11,7 @@ import { startNewGame } from "./startNewGame";
 export function reducerFunction(gs: GameState, action: Action): GameState {
     switch (action.type) {
         case "flip":
-            if (gs.roundPhase.type === "in-play") {
+            if (gs.roundPhase.type === "in-play" && !action.clickedCard.isFaceUp) {
                 return flipCard(gs, action);
             } else if (gs.roundPhase.type === "pre-look") {
                 return endPrelookPhase(gs);
