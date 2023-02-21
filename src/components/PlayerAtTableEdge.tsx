@@ -23,8 +23,7 @@ export function PlayerAtTableEdge(props: PlayerAtTableEdgesProps) {
 
     const isCurrentPlayer = currentPlayer.name === player.name;
     const springs = useSpring({
-        transform: `scale(${isCurrentPlayer ? 1 : 0.9})`,
-        textDecoration: isCurrentPlayer ? "underline" : ""
+        fontWeight: isCurrentPlayer ? "bolder" : "normal",
     });
 
     const classNames = [

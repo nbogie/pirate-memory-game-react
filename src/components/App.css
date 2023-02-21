@@ -38,7 +38,7 @@ body {
   border-radius: 1rem;
   display: grid;
   place-items: center;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .playerArea.placeholder {
