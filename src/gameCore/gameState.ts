@@ -1,18 +1,9 @@
 import { Card, createDeck } from "./card";
 import { shuffle } from "../utils/shuffle";
 import { sample } from "../utils/sample";
+import { RoundPhase } from "./roundPhase";
 
 export type NumPlayers = 2 | 3 | 4;
-
-export type RoundPhase =
-    | { type: "pre-look" }
-    | {
-        type: "in-play",
-        prevCard: Card | null,
-        prevPrevCard: Card | null
-    }
-    | { type: "round-end", winnerIx: number }
-    | { type: "game-over" }
 
 export interface ScheduledNote {
     note: "match" | "no-match",
