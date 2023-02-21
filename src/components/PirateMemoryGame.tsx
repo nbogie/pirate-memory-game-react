@@ -6,7 +6,7 @@ import { CardView } from "./CardView";
 import { GameOverView } from "./GameOverView";
 import { PlayersAtTable } from "./PlayersAtTable";
 import { RoundEndControls } from "./RoundEndControls";
-import { TreasureCard } from "./TreasureCard";
+import { TreasureCardView } from "./TreasureCardView";
 
 export function PirateMemoryGame() {
     const initialGameState = createInitialGameState();
@@ -16,6 +16,7 @@ export function PirateMemoryGame() {
         const roundPhase = gameState.roundPhase;
         return roundPhase.type === "in-play" && roundPhase.prevCard?.id === card.id
     }
+
     function isCardPreviousFlip(card: Card): boolean {
         const roundPhase = gameState.roundPhase;
         return roundPhase.type === "in-play" && roundPhase.prevPrevCard?.id === card.id
@@ -23,7 +24,7 @@ export function PirateMemoryGame() {
 
     const centreCard = gameState.roundPhase.type === "round-end" ?
         (
-            <TreasureCard {...{ gameState }} />
+            <TreasureCardView {...{ gameState, dispatch }} />
         ) :
         (
             <div className={`centreCard volcano`}>
@@ -46,6 +47,7 @@ export function PirateMemoryGame() {
             }
             {centreCard}
         </div>
+
         {
             gameState.roundPhase.type === "round-end" &&
             <RoundEndControls gameState={gameState} dispatch={dispatch} winnerIx={gameState.roundPhase.winnerIx} />
@@ -54,7 +56,6 @@ export function PirateMemoryGame() {
 
         <div>{gameState.roundPhase.type}</div>
         <div>{gameState.treasureCardPile.length} treasure(s) remain</div>
-
 
         {
             gameState.roundPhase.type === "game-over" &&
