@@ -29,7 +29,7 @@ export function createDeck() {
         }
     }
     const shuffled = shuffle(cards);
-    shuffled.pop();
+    shuffled.pop(); //Each game is played with 24 of the 25 possible cards - lose one!
     return shuffled;
 }
 
