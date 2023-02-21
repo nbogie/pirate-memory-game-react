@@ -4,7 +4,7 @@ import {
 import { awardTreasure } from "./awardTreasure";
 import { endPrelookPhase } from "./endPrelookPhase";
 import { flipCard } from "./flipCard";
-import { GameState } from "./gameState";
+import { GameState } from "../gameCore/gameState";
 import { setupGameOver } from "./setupGameOver";
 import { startNewGame } from "./startNewGame";
 

@@ -1,4 +1,4 @@
-import { GameState, getPlayerByPosIndex, PlayerState } from "./gameState";
+import { GameState, getPlayerByPosIndex, PlayerState } from "../gameCore/gameState";
 import { setupGameOver } from "./setupGameOver";
 
 export function awardTreasure(gs: GameState, winnerIx: number): GameState {

@@ -1,4 +1,4 @@
-import { pick } from "../utils/pick";
+import { shuffle } from "../utils/shuffle";
 
 export interface Card {
     backing: Backing;
@@ -31,10 +31,6 @@ export function createDeck() {
     const shuffled = shuffle(cards);
     shuffled.pop();
     return shuffled;
-}
-
-export function shuffle<T>(arr: T[]): T[] {
-    return [...arr.sort(() => Math.random() < 0.5 ? -1 : 1)];
 }
 
 

@@ -1,7 +1,7 @@
 import { useReducer } from "react";
 import { countNumFailsBeforeWin, createInitialGameState, NumPlayers } from "../gameCore/gameState";
-import { reducerFunction } from "../gameCore/reducerFunction";
-import { Card } from "./Card";
+import { reducerFunction } from "../reducer/reducerFunction";
+import { Card } from "../gameCore/card";
 import { CardView } from "./CardView";
 import { GameOverView } from "./GameOverView";
 import { PlayersAtTableEdges } from "./PlayersAtTableEdges";

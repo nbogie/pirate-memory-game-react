@@ -1,4 +1,5 @@
-import { Card, createDeck, shuffle } from "../components/Card";
+import { Card, createDeck } from "./card";
+import { shuffle } from "../utils/shuffle";
 import { sample } from "../utils/sample";
 
 export type NumPlayers = 2 | 3 | 4;

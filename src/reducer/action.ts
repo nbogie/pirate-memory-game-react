@@ -1,4 +1,4 @@
-import { Card } from "../components/Card";
+import { Card } from "../gameCore/card";
 
 export type Action = FlipCardAction | StartNewGameAction | AwardTreasureAction | CheatSetGameOverAction;
 

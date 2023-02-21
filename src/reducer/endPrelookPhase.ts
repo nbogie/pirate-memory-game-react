@@ -1,4 +1,4 @@
-import { GameState } from "./gameState";
+import { GameState } from "../gameCore/gameState";
 
 export function endPrelookPhase(gs: GameState): GameState {
     return {

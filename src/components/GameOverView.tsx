@@ -1,4 +1,4 @@
-import { Action } from "../gameCore/action";
+import { Action } from "../reducer/action";
 import { GameState, PlayerState } from "../gameCore/gameState";
 
 interface GameOverViewProps {

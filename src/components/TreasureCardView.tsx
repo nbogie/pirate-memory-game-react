@@ -1,6 +1,6 @@
 import { animated, useSpring } from '@react-spring/web';
 import { Dispatch } from "react";
-import { Action } from "../gameCore/action";
+import { Action } from "../reducer/action";
 import { GameState } from "../gameCore/gameState";
 
 interface TreasureCardViewProps {

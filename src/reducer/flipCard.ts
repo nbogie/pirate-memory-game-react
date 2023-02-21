@@ -1,6 +1,6 @@
-import { Card } from "../components/Card";
+import { Card } from "../gameCore/card";
+import { GameState, getPlayerByPosIndex, PlayerState } from "../gameCore/gameState";
 import { FlipCardAction } from "./action";
-import { GameState, getPlayerByPosIndex, PlayerState } from "./gameState";
 
 export function flipCard(gs: GameState, action: FlipCardAction): GameState {
     if (gs.roundPhase.type !== "in-play") {

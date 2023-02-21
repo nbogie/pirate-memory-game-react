@@ -1,6 +1,6 @@
 import { animated, useSpring } from '@react-spring/web';
-import { Action } from "../gameCore/action";
-import { Backing, Card } from "./Card";
+import { Action } from "../reducer/action";
+import { Backing, Card } from "../gameCore/card";
 
 interface CardViewProps {
     card: Card;
