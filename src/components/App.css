@@ -50,7 +50,8 @@ body {
   grid-area: c;
 }
 
-.card:hover {
+.card:hover,
+.centreCard:hover {
   cursor: pointer;
 }
 

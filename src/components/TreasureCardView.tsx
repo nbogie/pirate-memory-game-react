@@ -1,7 +1,7 @@
-import { GameState, TreasureCard } from "../gameCore/gameState";
 import { animated, useSpring } from '@react-spring/web';
 import { Dispatch } from "react";
 import { Action } from "../gameCore/action";
+import { GameState } from "../gameCore/gameState";
 
 interface TreasureCardViewProps {
     gameState: GameState;
@@ -9,21 +9,35 @@ interface TreasureCardViewProps {
 }
 export function TreasureCardView(props: TreasureCardViewProps) {
 
-    const springs = useSpring({
-        from: { rotateZ: -10 },
-        to: { rotateZ: 0 },
-        config: { damping: 0.1, frequency: 0.2 }
+    const { gameState, dispatch } = props;
+    if (gameState.roundPhase.type !== "round-end") {
+        return <div>ERROR: TreasureCardView expects round-end but got {gameState.roundPhase.type} </div>
+    }
+
+    const winnerIx = gameState.roundPhase.winnerIx;
+    // const winner = getPlayerByPosIndex(gameState, winnerIx);
+
+    // const springs = useSpring({
+    //     from: { rotateZ: -10 },
+    //     to: { rotateZ: 0 },
+    //     config: { damping: 0.1, frequency: 0.2 }
+    // })
+
+    const swellSprings = useSpring({
+        from: { scale: 0.98 },
+        to: { scale: 1 },
+        config: { damping: 0, frequency: 0.8 }
     })
 
     return (
         <animated.div
             className={`centreCard treasure`}
-            style={{ ...springs }}
-        // onClick={() => props.dispatch({ type: "award-treasure", winnerIx: -1 })}
+            onClick={() => dispatch({ type: "award-treasure", winnerIx: winnerIx })}
+            style={{ ...swellSprings }}
         >
             <div>💰</div>
             <div className="centerCardOverlay">{props.gameState.treasureCardPile.length}</div>
-        </animated.div>
+        </animated.div >
 
     );
 }

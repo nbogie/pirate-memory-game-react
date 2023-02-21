@@ -5,7 +5,6 @@ import { Card } from "./Card";
 import { CardView } from "./CardView";
 import { GameOverView } from "./GameOverView";
 import { PlayersAtTable } from "./PlayersAtTable";
-import { RoundEndControls } from "./RoundEndControls";
 import { TreasureCardView } from "./TreasureCardView";
 
 export function PirateMemoryGame() {
@@ -48,10 +47,6 @@ export function PirateMemoryGame() {
             {centreCard}
         </div>
 
-        {
-            gameState.roundPhase.type === "round-end" &&
-            <RoundEndControls gameState={gameState} dispatch={dispatch} winnerIx={gameState.roundPhase.winnerIx} />
-        }
         <PlayersAtTable gameState={gameState} />
 
         <div>{gameState.roundPhase.type}</div>
