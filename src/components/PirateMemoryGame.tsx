@@ -50,7 +50,6 @@ export function PirateMemoryGame() {
         <PlayersAtTable gameState={gameState} />
 
         <div>{gameState.roundPhase.type}</div>
-        <div>{gameState.treasureCardPile.length} treasure(s) remain</div>
 
         {
             gameState.roundPhase.type === "game-over" &&
