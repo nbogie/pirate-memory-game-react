@@ -1,5 +1,5 @@
 import { Action } from "../gameCore/action";
-import { GameState, getPlayerByPosIndex } from "../gameCore/gameState";
+import { GameState, getPlayerByPosIndex, PlayerState } from "../gameCore/gameState";
 
 interface RoundEndControlsProps {
     gameState: GameState;
@@ -7,10 +7,10 @@ interface RoundEndControlsProps {
     winnerIx: number;
 }
 export function RoundEndControls({ gameState, dispatch, winnerIx }: RoundEndControlsProps) {
+    const winner: PlayerState = getPlayerByPosIndex(gameState, winnerIx);
     return (
         <>
-            <p>Winner: {getPlayerByPosIndex(gameState, winnerIx).name}</p>
-            <button onClick={() => dispatch({ type: "award-treasure", winnerIx: winnerIx })}>award treasure!</button>
+            <button onClick={() => dispatch({ type: "award-treasure", winnerIx: winnerIx })}>Award Treasure to {winner.name}!</button>
         </>
     );
 }

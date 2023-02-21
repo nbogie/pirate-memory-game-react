@@ -6,6 +6,7 @@ import { CardView } from "./CardView";
 import { GameOverView } from "./GameOverView";
 import { PlayersAtTable } from "./PlayersAtTable";
 import { RoundEndControls } from "./RoundEndControls";
+import { TreasureCard } from "./TreasureCard";
 
 export function PirateMemoryGame() {
     const initialGameState = createInitialGameState();
@@ -22,10 +23,7 @@ export function PirateMemoryGame() {
 
     const centreCard = gameState.roundPhase.type === "round-end" ?
         (
-            <div className={`centreCard treasure`}>
-                <div>💰</div>
-                <div className="centerCardOverlay">{gameState.treasureCardPile.length}</div>
-            </div>
+            <TreasureCard {...{ gameState }} />
         ) :
         (
             <div className={`centreCard volcano`}>
@@ -48,15 +46,15 @@ export function PirateMemoryGame() {
             }
             {centreCard}
         </div>
+        {
+            gameState.roundPhase.type === "round-end" &&
+            <RoundEndControls gameState={gameState} dispatch={dispatch} winnerIx={gameState.roundPhase.winnerIx} />
+        }
         <PlayersAtTable gameState={gameState} />
 
         <div>{gameState.roundPhase.type}</div>
         <div>{gameState.treasureCardPile.length} treasure(s) remain</div>
 
-        {
-            gameState.roundPhase.type === "round-end" &&
-            <RoundEndControls gameState={gameState} dispatch={dispatch} winnerIx={gameState.roundPhase.winnerIx} />
-        }
 
         {
             gameState.roundPhase.type === "game-over" &&
@@ -64,5 +62,3 @@ export function PirateMemoryGame() {
         }
     </div>
 }
-
-
