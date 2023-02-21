@@ -1,10 +1,10 @@
 import { GameState, PlayerState } from "../gameCore/gameState";
 import { animated, useSpring } from '@react-spring/web'
-
-interface PlayersAtTableProps {
+import "./PlayersAtTableMini.css"
+interface PlayersAtTableMiniProps {
     gameState: GameState;
 }
-export function PlayersAtTable({ gameState }: PlayersAtTableProps) {
+export function PlayersAtTableMini({ gameState }: PlayersAtTableMiniProps) {
     const currentPlayer = gameState.players[gameState.currentPlayerIx];
 
     const style = { "--numPlayers": gameState.players.length } as React.CSSProperties;
@@ -12,7 +12,7 @@ export function PlayersAtTable({ gameState }: PlayersAtTableProps) {
     return (
         <div className="playersCircle" style={style}>
             {
-                gameState.players.map((p, ix) => <PlayerAtTable player={p} currentPlayer={currentPlayer} ix={ix} />)
+                gameState.players.map((p, ix) => <PlayerAtTableMini player={p} currentPlayer={currentPlayer} ix={ix} />)
             }
         </div>
     );
@@ -23,7 +23,7 @@ interface PlayerAtTableProps {
     ix: number;//for rotational layout
 }
 
-function PlayerAtTable(props: PlayerAtTableProps) {
+function PlayerAtTableMini(props: PlayerAtTableProps) {
     const { player, currentPlayer, ix } = props;
     const isCurrentPlayer = currentPlayer.name === player.name;
     const springs = useSpring({

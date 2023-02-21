@@ -1,0 +1,58 @@
+.playersCircle {
+    /* background: green; */
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    --circleSize: 5rem;
+    border: calc(var(--circleSize) * 0.1) solid gray;
+    width: calc(var(--circleSize) * 2);
+    height: calc(var(--circleSize) * 2);
+    /* This will be set by react */
+    --numPlayers: 3;
+    --rotStep: calc(360deg / var(--numPlayers));
+    user-select: none;
+    margin: 2rem;
+}
+
+.playersCircle .player {
+    position: absolute;
+    color: white;
+    width: fit-content;
+    padding: 0rem 0.8rem;
+    font-size: calc(var(--circleSize) * 0.35);
+    display: grid;
+    place-items: center;
+    border-radius: 0.3rem;
+    background: skyblue;
+    display: grid;
+    place-items: center;
+}
+
+.player.eliminated {
+    background-color: gray;
+}
+
+.player.currentPlayer {
+    outline: 0.2rem dashed gold;
+    scale: 1;
+}
+
+/* 1st player */
+.rot0 {
+    transform: rotate(0deg) translate(0rem, var(--circleSize));
+}
+
+/* 2nd player */
+.rot1 {
+    transform: rotate(calc(var(--rotStep) * 1)) translate(0rem, var(--circleSize));
+}
+
+/* possible 3rd player */
+.rot2 {
+    transform: rotate(calc(var(--rotStep) * 2)) translate(0rem, var(--circleSize));
+}
+
+/* possible 4th and final player */
+.rot3 {
+    transform: rotate(calc(var(--rotStep) * 3)) translate(0rem, var(--circleSize));
+}
