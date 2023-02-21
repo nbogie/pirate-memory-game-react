@@ -16,7 +16,47 @@ body {
   }
 }
 
+
+
+.gameTable {
+  display: grid;
+  grid-template-areas:
+    "..  pN    .."
+    "pW  main  pE"
+    "..  pS    ..";
+
+  gap: 0.2rem;
+  grid-template-columns: 1fr 8fr 1fr;
+  grid-template-rows: 1fr 8fr 1fr;
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  width: fit-content;
+}
+
+.playerArea {
+  background: whitesmoke;
+  border-radius: 1rem;
+}
+
+.playerArea.pN {
+  grid-area: pN;
+}
+
+.playerArea.pE {
+  grid-area: pE;
+}
+
+.playerArea.pS {
+  grid-area: pS;
+}
+
+.playerArea.pW {
+  grid-area: pW;
+}
+
 .cardGrid {
+  grid-area: main;
   display: grid;
   grid-template-areas:
     ". . . . ."

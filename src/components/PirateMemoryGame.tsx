@@ -5,6 +5,7 @@ import { Card } from "./Card";
 import { CardView } from "./CardView";
 import { GameOverView } from "./GameOverView";
 import { PlayersAtTable } from "./PlayersAtTable";
+import { PlayersAtTableEdges } from "./PlayersAtTableEdges";
 import { TreasureCardView } from "./TreasureCardView";
 
 interface PirateMemoryGameProps {
@@ -37,27 +38,35 @@ export function PirateMemoryGame(props: PirateMemoryGameProps) {
         );
 
 
-    return <div className="game">
-        <div className="cardGrid">
-            {
-                gameState.cards.map(c => <CardView
-                    card={c}
-                    dispatch={dispatch}
-                    key={c.id}
-                    isLatestFlip={isCardLatestFlip(c)}
-                    isPreviousFlip={isCardPreviousFlip(c)}
-                />)
-            }
-            {centreCard}
+    return (
+        <div className="game">
+
+            <div className="gameTable">
+                <PlayersAtTableEdges gameState={gameState} />
+
+                <div className="cardGrid">
+                    {
+                        gameState.cards.map(c => <CardView
+                            card={c}
+                            dispatch={dispatch}
+                            key={c.id}
+                            isLatestFlip={isCardLatestFlip(c)}
+                            isPreviousFlip={isCardPreviousFlip(c)}
+                        />)
+                    }
+                    {centreCard}
+                </div>
+            </div>
+            <div>Other stuff
+                <PlayersAtTable gameState={gameState} />
+                <button onClick={() => dispatch({ type: "cheat-set-game-over" })}>Set Game Over</button>
+                <div>{gameState.roundPhase.type}</div>
+
+                {
+                    gameState.roundPhase.type === "game-over" &&
+                    <GameOverView gameState={gameState} dispatch={dispatch} />
+                }
+            </div>
         </div>
-
-        <PlayersAtTable gameState={gameState} />
-        <button onClick={() => dispatch({ type: "cheat-set-game-over" })}>Set Game Over</button>
-        <div>{gameState.roundPhase.type}</div>
-
-        {
-            gameState.roundPhase.type === "game-over" &&
-            <GameOverView gameState={gameState} dispatch={dispatch} />
-        }
-    </div>
+    );
 }
