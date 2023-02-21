@@ -14,7 +14,7 @@ export function PlayersAtTableEdges({ gameState }: PlayersAtTableEdgesProps) {
         //No container as these are going into a grid along with some other siblings
         <>
             {
-                playersAndEmptySeats.map((p, ix) => p === null ? <PlaceholderAtTableEdge ix={ix} /> : <PlayerAtTableEdge player={p} currentPlayer={currentPlayer} ix={ix} />)
+                playersAndEmptySeats.map((p, ix) => p === null ? <PlaceholderAtTableEdge ix={ix} key={ix} /> : <PlayerAtTableEdge player={p} currentPlayer={currentPlayer} ix={ix} key={ix} />)
             }
         </>
     );
