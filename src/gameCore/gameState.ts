@@ -28,14 +28,12 @@ export function createInitialGameState(numPlayers: NumPlayers): GameState {
     const deck = createDeck();
     const players = createRandomPlayers(numPlayers);
 
-    const cardsToPreview = shuffle(deck).slice(0, 3);
-    cardsToPreview.forEach(c => c.isFaceUp = true)
     const gameState: GameState = {
         cards: shuffle(deck),
         players,
         currentPlayerIx: 0,
         playerToStartNextRound: null,
-        roundPhase: { type: "pre-look" },
+        roundPhase: { type: "pre-look", stage: "get-ready", who: 1 },
         treasureCardPile: createTreasureCardPile(),
         scheduledNotes: []
     };
@@ -61,4 +59,13 @@ export function countNumFailsBeforeWin(gameState: GameState): number {
 function createTreasureCardPile(): TreasureCard[] {
     const treasureValues = [1, 1, 2, 2, 2, 3, 4];
     return shuffle(treasureValues).map(v => ({ value: v }))
+}
+
+
+export function turnAllCardsFaceDown(cards: Card[]): Card[] {
+    return cards.map(c => ({ ...c, isFaceUp: false }))
+}
+
+export function turnAllCardsFaceUp(cards: Card[]): Card[] {
+    return cards.map(c => ({ ...c, isFaceUp: true }))
 }

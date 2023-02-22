@@ -31,6 +31,7 @@ body {
   padding: 1rem;
   border-radius: 1rem;
   width: fit-content;
+  position: relative;
 }
 
 .playerArea {
@@ -156,9 +157,6 @@ body {
   font-size: 2rem;
 }
 
-
-
-
 .gameOver {
   font-size: 1.5rem;
 }
@@ -168,4 +166,22 @@ button {
   font-size: 1.2rem;
   padding: 0.2em;
   margin: 0.2rem;
+}
+
+.prelookInstructions {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  font-size: 1.2rem;
+  border: 1rem solid gainsboro;
+  border-radius: 1rem;
+  background: white;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+}
+
+.roundPhase {
+  font-size: 2rem;
 }

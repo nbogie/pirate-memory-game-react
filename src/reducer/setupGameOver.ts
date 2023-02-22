@@ -1,11 +1,11 @@
-import { GameState } from "../gameCore/gameState";
+import { GameState, turnAllCardsFaceUp } from "../gameCore/gameState";
 
 
 
 export function setupGameOver(gs: GameState): GameState {
     return {
         ...gs,
-        cards: gs.cards.map(c => ({ ...c, isFaceUp: true })),
+        cards: turnAllCardsFaceUp(gs.cards),
         roundPhase: { type: "game-over" },
     };
 }

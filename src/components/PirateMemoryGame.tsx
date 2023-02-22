@@ -5,9 +5,9 @@ import { reducerFunction } from "../reducer/reducerFunction";
 import { CardView } from "./CardView";
 import { GameOverView } from "./GameOverView";
 import { PlayersAtTableEdges } from "./PlayersAtTableEdges";
+import { PrelookInstructions, GameStateInPrelookRoundPhase } from "./PrelookInstructions";
 import { TreasureCardView } from "./TreasureCardView";
 import { useSequencedSoundConsumer } from "./useSequencedSoundConsumer";
-// import { OLDPlayersAtTableMini } from "./OLDPlayersAtTableMini";
 
 interface PirateMemoryGameProps {
     numPlayers: NumPlayers;
@@ -62,14 +62,20 @@ export function PirateMemoryGame(props: PirateMemoryGameProps) {
                     {centreCard}
                 </div>
             </div>
+            {/* TODO: remove the typescript 'as'.  
+            Intention is to make this component only accept a gamestate prop where the game state is in a current state (specifically, in "pre-look" roundPhase), as per the condition.
+            */}
+            {
+                gameState.roundPhase.type === "pre-look" && <PrelookInstructions dispatch={dispatch} gameState={gameState as GameStateInPrelookRoundPhase} />
+            }
             <div>
                 <button onClick={() => dispatch({ type: "cheat-set-game-over" })}>Set Game Over</button>
                 <button onClick={() => soundPlayer.play("match")}>Play Good</button>
                 <button onClick={() => soundPlayer.play("no-match")}>Play Bad</button>
                 <button onClick={() => setSoundIsOn(prev => !prev)}>Sound is {soundIsOn ? "on" : "off"}</button>
 
-                {/* <OLDPlayersAtTableMini gameState={gameState} /> */}
-                <div>{gameState.roundPhase.type}</div>
+                <div className="roundPhase">{gameState.roundPhase.type}</div>
+
                 {
                     gameState.roundPhase.type === "game-over" &&
                     <GameOverView gameState={gameState} dispatch={dispatch} />
@@ -78,5 +84,3 @@ export function PirateMemoryGame(props: PirateMemoryGameProps) {
         </div>
     );
 }
-
-

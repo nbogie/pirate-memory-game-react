@@ -26,10 +26,13 @@ function createScoringReport(gameState: GameState): ScoringReport {
     copyOfPlayers.sort((a, b) => a.total < b.total ? -1 : 1).reverse();
     return { players: copyOfPlayers }
 }
+
 type PlayerStateWithScore = PlayerState & Score
+
 interface ScoringReport {
     players: PlayerStateWithScore[]
 }
+
 interface Score {
     total: number;
 }

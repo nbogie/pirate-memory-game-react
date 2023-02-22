@@ -1,4 +1,4 @@
-import { GameState, getPlayerByPosIndex, PlayerState } from "../gameCore/gameState";
+import { GameState, getPlayerByPosIndex, PlayerState, turnAllCardsFaceDown } from "../gameCore/gameState";
 import { setupGameOver } from "./setupGameOver";
 
 export function awardTreasure(gs: GameState, winnerIx: number): GameState {
@@ -31,7 +31,7 @@ export function setupNextRound(gs: GameState): GameState {
     const currentPlayerIx = startingPlayer ? gs.players.findIndex(ps => ps.name === startingPlayer.name) : 0;
     return {
         ...gs,
-        cards: gs.cards.map(c => ({ ...c, isFaceUp: false })),
+        cards: turnAllCardsFaceDown(gs.cards),
         players: gs.players.map(p => ({ ...p, isStillIn: true })),
         currentPlayerIx,
         playerToStartNextRound: null,
