@@ -2,8 +2,9 @@ import { PlayerState } from "../gameCore/gameState";
 import { animated, useSpring } from '@react-spring/web';
 
 type PlayerAreaName = "pN" | "pE" | "pS" | "pW";
-export function playerAreaFor(n: 0 | 1 | 2 | 3): PlayerAreaName {
-    const lookup: Record<0 | 1 | 2 | 3, PlayerAreaName> = {
+type PlayerIndex = 0 | 1 | 2 | 3;
+export function playerAreaFor(n: PlayerIndex): PlayerAreaName {
+    const lookup: Record<PlayerIndex, PlayerAreaName> = {
         0: "pN",
         1: "pE",
         2: "pS",
