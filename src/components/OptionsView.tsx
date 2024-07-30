@@ -4,7 +4,7 @@ import { NumPlayers } from '../gameCore/gameState';
 interface OptionsViewProps {
     startGame: (numPlayers: NumPlayers) => void;
 }
-export function OptionsView({ startGame }: OptionsViewProps) {
+export function OptionsView({ startGame }: Readonly<OptionsViewProps>) {
 
     const [numPlayers, setNumPlayers] = useState<NumPlayers>(3);
     function validate(n: number, defaultVal: NumPlayers): NumPlayers {
@@ -16,7 +16,7 @@ export function OptionsView({ startGame }: OptionsViewProps) {
     }
     return (
         <div>
-            Number of players:
+            <span>Number of players:</span>
             <input
                 type="number"
                 min="2" max="4"
