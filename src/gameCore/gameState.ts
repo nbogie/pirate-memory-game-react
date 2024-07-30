@@ -22,6 +22,8 @@ export interface GameState {
 
 export type TreasureCard = { value: number };
 
+export type PlayerIndex = 0 | 1 | 2 | 3;
+
 export type PlayerState = { name: string, isStillIn: boolean, treasures: TreasureCard[] }
 
 export function createInitialGameState(numPlayers: NumPlayers): GameState {

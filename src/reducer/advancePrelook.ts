@@ -1,6 +1,6 @@
 import { seatPlayersAtTable } from "../components/seatPlayersAtTable";
 import { Card } from "../gameCore/card";
-import { GameState, turnAllCardsFaceDown } from "../gameCore/gameState";
+import { GameState, PlayerIndex, turnAllCardsFaceDown } from "../gameCore/gameState";
 
 export function advancePrelook(gs: GameState): GameState {
 
@@ -14,7 +14,7 @@ export function advancePrelook(gs: GameState): GameState {
         return {
             ...gs,
             roundPhase: { ...gs.roundPhase, stage: "look" },
-            cards: cardsForPrelookForPlayer(gs, (who - 1) as 0 | 1 | 2 | 3)
+            cards: cardsForPrelookForPlayer(gs, (who - 1) as PlayerIndex)
         }
     }
 
@@ -38,15 +38,15 @@ export function advancePrelook(gs: GameState): GameState {
     return { ...gs, cards: turnAllCardsFaceDown(gs.cards), roundPhase: { type: "in-play", prevCard: null, prevPrevCard: null } }
 }
 
-function cardsForPrelookForPlayer(gs: GameState, playerIx: 0 | 1 | 2 | 3): Card[] {
-    const cardIndicesOnCompassPoints: Record<0 | 1 | 2 | 3, [number, number, number]> = {
+function cardsForPrelookForPlayer(gs: GameState, playerIx: PlayerIndex): Card[] {
+    const cardIndicesOnCompassPoints: Record<PlayerIndex, [number, number, number]> = {
         0: [1, 2, 3],
         1: [9, 13, 18],
         2: [20, 21, 22],
         3: [5, 10, 14]
     }
     const seatedPlayers = seatPlayersAtTable(gs.players);
-    const seatsWithIndices = seatedPlayers.map((playerOrNull, ix) => ({ player: playerOrNull, indices: cardIndicesOnCompassPoints[ix as 0 | 1 | 2 | 3] }));
+    const seatsWithIndices = seatedPlayers.map((playerOrNull, ix) => ({ player: playerOrNull, indices: cardIndicesOnCompassPoints[ix as PlayerIndex] }));
     const indicesForThesePlayers = seatsWithIndices.filter(({ player }) => player !== null).map(({ player, indices }) => indices);
     const cardIndicesForPlayer = indicesForThesePlayers[playerIx];
     return gs.cards.map((c, ix) => ({ ...c, isFaceUp: cardIndicesForPlayer.includes(ix) }));

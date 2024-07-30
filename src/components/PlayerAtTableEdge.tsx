@@ -1,8 +1,7 @@
-import { PlayerState } from "../gameCore/gameState";
+import { PlayerIndex, PlayerState } from "../gameCore/gameState";
 import { animated, useSpring } from '@react-spring/web';
 
 type PlayerAreaName = "pN" | "pE" | "pS" | "pW";
-type PlayerIndex = 0 | 1 | 2 | 3;
 export function playerAreaFor(n: PlayerIndex): PlayerAreaName {
     const lookup: Record<PlayerIndex, PlayerAreaName> = {
         0: "pN",
@@ -31,7 +30,7 @@ export function PlayerAtTableEdge(props: PlayerAtTableEdgesProps) {
         "playerArea",
         player.isStillIn ? "" : "eliminated",
         player.name === currentPlayer.name ? "currentPlayer" : "",
-        playerAreaFor(ix as 0 | 1 | 2 | 3)
+        playerAreaFor(ix as PlayerIndex)
     ];
 
     return (
