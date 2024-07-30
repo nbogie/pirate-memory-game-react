@@ -1,13 +1,12 @@
+import { GameState } from "../gameCore/gameState";
 import {
     Action
 } from "./action";
+import { advancePrelook } from "./advancePrelook";
 import { awardTreasure } from "./awardTreasure";
-import { endPrelookPhase } from "./endPrelookPhase";
 import { flipCard } from "./flipCard";
-import { GameState } from "../gameCore/gameState";
 import { setupGameOver } from "./setupGameOver";
 import { startNewGame } from "./startNewGame";
-import { advancePrelook } from "./advancePrelook";
 
 export function reducerFunction(gs: GameState, action: Action): GameState {
     switch (action.type) {

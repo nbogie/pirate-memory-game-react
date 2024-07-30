@@ -1,6 +1,6 @@
 import { seatPlayersAtTable } from "../components/seatPlayersAtTable";
 import { Card } from "../gameCore/card";
-import { GameState, PlayerState, turnAllCardsFaceDown } from "../gameCore/gameState";
+import { GameState, turnAllCardsFaceDown } from "../gameCore/gameState";
 
 export function advancePrelook(gs: GameState): GameState {
 

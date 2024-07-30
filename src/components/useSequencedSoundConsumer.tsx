@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import useSound from 'use-sound';
 import goodNotes from "../assets/goodNotes.wav";
 import wrongNotes from "../assets/wrongNotes.wav";
-import { GameState, ScheduledNote } from "../gameCore/gameState";
+import { ScheduledNote } from "../gameCore/gameState";
 import { pick } from "../utils/pick";
 
 /** Monitors given sequenced-notes log and plays any it has not yet played 
