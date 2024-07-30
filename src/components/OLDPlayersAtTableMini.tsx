@@ -13,7 +13,7 @@ export function OLDPlayersAtTableMini({ gameState }: OLDPlayersAtTableMiniProps)
     return (
         <div className="playersCircle" style={style}>
             {
-                gameState.players.map((p, ix) => <OLDPlayerAtTableMini player={p} currentPlayer={currentPlayer} ix={ix} />)
+                gameState.players.map((p, ix) => <OLDPlayerAtTableMini key={p.name} player={p} currentPlayer={currentPlayer} ix={ix} />)
             }
         </div>
     );
