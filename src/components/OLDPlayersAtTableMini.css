@@ -1,5 +1,4 @@
-.playersCircle {
-    /* background: green; */
+.playersCircle {    
     display: grid;
     place-items: center;
     border-radius: 50%;
@@ -24,8 +23,6 @@
     place-items: center;
     border-radius: 0.3rem;
     background: skyblue;
-    display: grid;
-    place-items: center;
 }
 
 .player.eliminated {
