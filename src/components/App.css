@@ -117,6 +117,7 @@ body {
 
 .centreCard {
   grid-area: c;
+  position: relative;
 }
 
 .treasure {
@@ -142,9 +143,6 @@ body {
   background: repeating-linear-gradient(-45deg, #acafcf, #a6a8d1 4px, #c6c6db 4px, #e5e5f7 14px);
 }
 
-.centreCard {
-  position: relative
-}
 
 
 .centerCardOverlay {
