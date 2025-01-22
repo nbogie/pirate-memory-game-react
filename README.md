@@ -1,6 +1,6 @@
 # pirate memory game - react
 
-This is a very rough implementation of the fantastic card/board game "Memoarrr!" originally by Carlo Bortolini,
+This is a very rough implementation of the fantastic card/board game "Memoarrr!" originally by Carlo Bortolini.
 
 It is implemented only for educational purposes, with React, TypeScript, useReducer.
 
